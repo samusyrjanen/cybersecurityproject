@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-    path('notepad/', include('notepad.urls')),
+    path('', include('notepad.urls')),
     path('admin/', admin.site.urls),
 ]

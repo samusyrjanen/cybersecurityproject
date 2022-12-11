@@ -7,6 +7,6 @@ from django.contrib.auth.models import User
 class Account(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-class Note(models.Model):
+'''class Note(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    input_text = models.CharField(max_length=200)
+    input_text = models.CharField(max_length=200)'''

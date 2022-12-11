@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <title>Notes</title>
+</head>
+
+
+<body>
+    Currently logged in as {{logged_in_user}}<br>
+    <a href="/logout/">logout</a>
+    <br><br>
+
+    <form action='/notes/{{ logged_in_user }}/' method="post">
+        <span>Write a new note:</span><br/>
+        <input type="text" name="note"/><br/>
+        <input type="submit" value="save"/>
+    </form>
+
+    <br>
+    <h2>your notes:</h2>
+    {% for note in notes %}
+        <br>
+        {{note}}
+    {% endfor %}
+</body>

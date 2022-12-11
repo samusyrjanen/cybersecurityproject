@@ -1,0 +1,35 @@
+Currently logged in as {{logged_in_user}}<br>
+<a href="/logout/">logout</a>
+<br><br>
+
+{% if logged_in_user == None %}
+You need to be logged in to see your notes.<br>
+{% else %}
+<a href="/notes/{{ logged_in_user }}/">Click to see your notes</a>
+{% endif %}
+
+<h2>Login</h2>
+<form action="/login/" method="post">
+    <label for="username">username:</label><br>
+    <input type="text" name="username" required><br>
+    <label for="password">password:</label><br>
+    <input type="text" name="password" required><br><br>
+    <input type="submit" value="login">
+</form>
+
+<br><br>
+<h2>Register</h2>
+
+<form action="/register/" method="post">
+    <label for="username">username:</label><br>
+    <input type="text" name="username" required><br>
+    <label for="password">password:</label><br>
+    <input type="text" name="password" required><br><br>
+    <input type="submit" value="register">
+</form>
+
+<br>
+<h2>list of all registered users:</h2><br>
+{% for user in users %}
+    {{user}}<br>
+{% endfor %}
