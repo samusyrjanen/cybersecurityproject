@@ -51,6 +51,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myproject.urls'
+SESSION_ENGINE = 'myproject.create_session'
 
 TEMPLATES = [
     {

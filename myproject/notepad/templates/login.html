@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 Currently logged in as {{logged_in_user}}<br>
 <a href="/logout/">logout</a>
 <br><br>
@@ -9,7 +11,8 @@ You need to be logged in to see your notes.<br>
 {% endif %}
 
 <h2>Login</h2>
-<form action="/login/" method="post">
+<form action="/login/" method="post"><!--csrf token is missing-->
+    <!--{% csrf_token %}-->
     <label for="username">username:</label><br>
     <input type="text" name="username" required><br>
     <label for="password">password:</label><br>
@@ -21,8 +24,11 @@ You need to be logged in to see your notes.<br>
 <h2>Register</h2>
 
 <form action="/register/" method="post">
+    <!--{% csrf_token %}-->
     <label for="username">username:</label><br>
     <input type="text" name="username" required><br>
+    <label for="email">email:</label><br>
+    <input type="text" name="email" required><br>
     <label for="password">password:</label><br>
     <input type="text" name="password" required><br><br>
     <input type="submit" value="register">

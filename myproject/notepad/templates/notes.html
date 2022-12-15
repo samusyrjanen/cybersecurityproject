@@ -9,7 +9,8 @@
     <a href="/logout/">logout</a>
     <br><br>
 
-    <form action='/notes/{{ logged_in_user }}/' method="post">
+    <form action='/notes/{{ logged_in_user }}/' method="post"><!--csrf token is missing-->
+        <!--{% csrf_token %}-->
         <span>Write a new note:</span><br/>
         <input type="text" name="note"/><br/>
         <input type="submit" value="save"/>
