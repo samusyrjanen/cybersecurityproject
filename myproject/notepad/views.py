@@ -5,6 +5,13 @@ from django.contrib.auth import logout, authenticate, login
 from .database_reader import get_all_notes, get_user_notes, write_note
 #from django.views.decorators.csrf import csrf_protect
 
+#these would be for session hijacking (see below)
+'''
+import sys
+import requests
+import json
+'''
+
 def index(request):
     users = User.objects.all()
     logged_in_user = str(request.user)
@@ -29,10 +36,24 @@ def notes(request, username):#broken access control: users can see other users' 
     '''
 
     notes = get_user_notes(username)
+
+    #potential way of hijacking a session
+    #memo for essay
+    '''
+    address = 'http://127.0.0.1:8000'
+    b_address = address + '/notes/' + username + '/'
+    for sid in range(1, 10):
+        session = 'session-' + str(sid)
+        r = requests.get(b_address, cookies = {'sessionid': session})
+        text = json.loads(r.text)
+        if text['username'] == 'emailtest':
+            print(text)
+    '''
+
     return render(request, 'notes.html', {'notes': notes, 'logged_in_user': logged_in_user})
 
 #@csrf_protect
-def user_login(request):
+def user_login(request):#not keeping log of succesful and failed logins
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
